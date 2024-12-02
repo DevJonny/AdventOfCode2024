@@ -158,6 +158,9 @@ public class DayTwo(ITestOutputHelper testOutputHelper)
     [InlineData("8 6 4 4 1")]
     [InlineData("1 3 6 7 9")]
     [InlineData("43 40 41 44 45 46 48 51")]
+    [InlineData("7 10 8 10 11")]
+    [InlineData("29 28 27 25 26 25 22 20")]
+    [InlineData("48 46 47 49 51 54 56")]
     public void PartTwoCheckReport_ReportIsSafe_ReturnOne(string report)
     {
         Assert.Equal(1, PartTwoCheckReportsAreSafe(report));
@@ -178,9 +181,4 @@ public class DayTwo(ITestOutputHelper testOutputHelper)
     }
     
     #endregion
-}
-
-public static class RangeExtensions
-{
-    public static bool Contains(this Range range, int value) => range.Start.Value <= value && value < range.End.Value;
 }
