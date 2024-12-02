@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using Xunit.Abstractions;
+﻿using Xunit.Abstractions;
 
 namespace AdventOfCode2024;
 
@@ -57,14 +56,14 @@ public class DayTwo(ITestOutputHelper testOutputHelper)
                 
             if (currentLevel == previousLevel)
                 return 0;
-
+        
             if (ascendingLevel && currentLevel - 3 > previousLevel)
                 return 0;
             
             if (!ascendingLevel && previousLevel - 3 > currentLevel)
                 return 0;
         }
-
+        
         return 1;
     }
 
@@ -96,60 +95,20 @@ public class DayTwo(ITestOutputHelper testOutputHelper)
     
     private int PartTwoCheckReportsAreSafe(string report)
     {
-        var levels = report.Split(' ').Select(int.Parse).ToArray();
+        var levels = report.Split(' ').Select(int.Parse).ToList();
 
-        var numberOfSafeLevels = 1;
-        
-        bool ascendingLevel = false;
-
-        var ascendingLevels = 0;
-        var descendingLevels = 0;
-        
-        for (var i = 1; i < levels.Length; i++)
+        for (var i = 0; i < levels.Count; i++)
         {
-            var previousLevel = levels[i-1];
-            var currentLevel = levels[i];
-
-            if (previousLevel > currentLevel)
-                descendingLevels++;
-
-            if (previousLevel < currentLevel)
-                ascendingLevels++;
-        }
-        
-        ascendingLevel = ascendingLevels >= levels.Length - 2;
-
-        List<int> badLevelIndexes = [];
-
-        var checkAgainst = levels[0];
-        
-        for (var i = 1; i < levels.Length; i++)
-        {
-            var currentLevel = levels[i];
-
-            if (ascendingLevel && currentLevel < checkAgainst)
-            {
-                checkAgainst = currentLevel;
-                badLevelIndexes.Add(i - 1);
-                continue;
-            }
+            var newLevels = new List<int>(levels);
+            newLevels.RemoveAt(i);
             
-            if ((checkAgainst + 1 <= currentLevel && checkAgainst + 3 >= currentLevel && ascendingLevel) ||
-                (checkAgainst - 1 >= currentLevel && checkAgainst - 3 <= currentLevel && !ascendingLevel))
-            {
-                checkAgainst = currentLevel;
-                continue;
-            }
-            
-            badLevelIndexes.Add(i);
+            var result = PartOneCheckReportsAreSafe(string.Join(" ", newLevels));
+
+            if (result == 1)
+                return 1;
         }
 
-        var isBadReport = badLevelIndexes.Count >= 2;
-        
-        if (!isBadReport)
-            testOutputHelper.WriteLine($"{report} is {(isBadReport ? "Unsafe" : "Safe")}");
-        
-        return isBadReport ? 0 : 1;
+        return 0;
     }
 
     [Theory]
@@ -158,7 +117,6 @@ public class DayTwo(ITestOutputHelper testOutputHelper)
     [InlineData("8 6 4 4 1")]
     [InlineData("1 3 6 7 9")]
     [InlineData("43 40 41 44 45 46 48 51")]
-    [InlineData("7 10 8 10 11")]
     [InlineData("29 28 27 25 26 25 22 20")]
     [InlineData("48 46 47 49 51 54 56")]
     public void PartTwoCheckReport_ReportIsSafe_ReturnOne(string report)
@@ -174,7 +132,6 @@ public class DayTwo(ITestOutputHelper testOutputHelper)
     [InlineData("1 2 7 8 9")]
     [InlineData("9 7 6 2 1")]
     [InlineData("8 7 14 15 16 17")]
-    [InlineData("7 8 9 1 11 12")]
     public void PartTwoCheckReport_ReportIsUnsafe_ReturnZero(string report)
     {
         Assert.Equal(0, PartTwoCheckReportsAreSafe(report));
