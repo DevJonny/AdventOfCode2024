@@ -1,29 +1,19 @@
-﻿using Xunit.Abstractions;
+﻿using App.Days;
 
-namespace AdventOfCode2024;
+namespace Unit.Tests;
 
-public class DayTwo(ITestOutputHelper testOutputHelper)
+public class DayTwoTests
 {
     [Fact]
     public void PartOne()
     {
-        var reports = File.ReadAllLines("./Files/DayTwoPartOne.txt");
-
-        var safeReports = reports.Sum(PartOneCheckReportsAreSafe);
-
-        testOutputHelper.WriteLine(safeReports.ToString());
-        
-        Assert.Equal(472, safeReports);
+        Assert.Equal(472, DayTwo.PartOne("../../../../../Files/DayTwo.txt"));
     }
 
     [Fact]
     public void PartTwo()
     {
-        var reports = File.ReadAllLines("./Files/DayTwoPartTwo.txt");
-        
-        var safeReports = reports.Sum(PartTwoCheckReportsAreSafe);
-        
-        testOutputHelper.WriteLine(safeReports.ToString());
+        Assert.Equal(520, DayTwo.PartTwo("../../../../../Files/DayTwo.txt"));
     }
 
     #region Part One

@@ -1,29 +1,24 @@
 using System.Text.RegularExpressions;
-using Xunit.Abstractions;
 
-namespace AdventOfCode2024;
+namespace App.Days;
 
-public partial class DayThree(ITestOutputHelper testOutputHelper)
+public abstract partial class DayThree
 {
-    private readonly Regex _ops = OperationRegex();
+    private static readonly Regex Ops = OperationRegex();
     
-    [Fact]
-    public void DayThreePartOne()
+    public static int PartOne(string dataFile)
     {
-        var data = File.ReadAllText("Files/DayThreePartOne.txt");
-
-        var total = _ops
+        var data = File.ReadAllText(dataFile);
+        
+        return Ops
             .Matches(data)
             .Select(m => int.Parse(m.Groups[1].ToString()) * int.Parse(m.Groups[2].ToString()))
             .Sum();
-        
-        Assert.Equal(156388521, total);
     }
 
-    [Fact]
-    public void DayThreePartTwo()
+    public static int PartTwo(string dataFile)
     {
-        var data = File.ReadAllText("Files/DayThreePartTwo.txt");
+        var data = File.ReadAllText(dataFile);
         var ends = data.Split("don't()");
 
         List<string> stringsToParse = [ends[0]]; 
@@ -36,15 +31,13 @@ public partial class DayThree(ITestOutputHelper testOutputHelper)
                 stringsToParse.Add(end[starts..]);
         }
 
-        var total = stringsToParse
-            .Sum(block => _ops
+        return stringsToParse
+            .Sum(block => Ops
                 .Matches(block)
                 .Select(m => int.Parse(m.Groups[1].ToString()) * int.Parse(m.Groups[2].ToString()))
                 .Sum());
-        
-        Assert.Equal(75920122, total);
     }
-
+    
     [GeneratedRegex("""mul\((\d\d?\d?),(\d\d?\d?)\)""", RegexOptions.Compiled)]
     private static partial Regex OperationRegex();
 }
