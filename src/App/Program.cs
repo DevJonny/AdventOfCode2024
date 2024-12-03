@@ -1,3 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using App.Menus;
+using InteractiveCLI;
+using Microsoft.Extensions.Hosting;
 
-Console.WriteLine("Hello, World!");
+var host = 
+    Host.CreateDefaultBuilder()
+        .AddInteractiveCli()
+        .Build();
+
+host.UseInteractiveCli<TopLevelMenu>(_ => 
+    new TopLevelMenu(), args);
