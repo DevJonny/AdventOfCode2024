@@ -22,4 +22,8 @@
       <ProjectReference Include="..\..\src\App\App.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Files\*.*" CopyToOutputDirectory="Always" />
+    </ItemGroup>
+
 </Project>
