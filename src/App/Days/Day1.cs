@@ -1,8 +1,8 @@
 namespace App.Days;
 
-public abstract class DayOne
+public abstract class Day1
 {
-    public static int PartOne(string dataFile)
+    public static int Part1(string dataFile)
     {
         var data = File.ReadAllLines(dataFile);
     
@@ -22,7 +22,7 @@ public abstract class DayOne
         return diffs.Sum();
     }
 
-    public static int PartTwo(string dataFile)
+    public static int Part2(string dataFile)
     {
         var data = File.ReadAllLines(dataFile);
         

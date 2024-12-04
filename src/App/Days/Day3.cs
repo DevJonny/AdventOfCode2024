@@ -2,11 +2,11 @@ using System.Text.RegularExpressions;
 
 namespace App.Days;
 
-public abstract partial class DayThree
+public abstract partial class Day3
 {
     private static readonly Regex Ops = OperationRegex();
     
-    public static int PartOne(string dataFile)
+    public static int Part1(string dataFile)
     {
         var data = File.ReadAllText(dataFile);
         
@@ -16,7 +16,7 @@ public abstract partial class DayThree
             .Sum();
     }
 
-    public static int PartTwo(string dataFile)
+    public static int Part2(string dataFile)
     {
         var data = File.ReadAllText(dataFile);
         var ends = data.Split("don't()");

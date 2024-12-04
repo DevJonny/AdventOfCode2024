@@ -2,18 +2,18 @@
 
 namespace Unit.Tests;
 
-public class DayTwoTests
+public class Day2Tests
 {
     [Fact]
     public void PartOne()
     {
-        Assert.Equal(472, DayTwo.PartOne("../../../../../Files/DayTwo.txt"));
+        Assert.Equal(472, Day2.Part1("../../../../../Files/DayTwo.txt"));
     }
 
     [Fact]
     public void PartTwo()
     {
-        Assert.Equal(520, DayTwo.PartTwo("../../../../../Files/DayTwo.txt"));
+        Assert.Equal(520, Day2.Part2("../../../../../Files/DayTwo.txt"));
     }
 
     #region Part One

@@ -7,5 +7,4 @@ var host =
         .AddInteractiveCli()
         .Build();
 
-host.UseInteractiveCli<TopLevelMenu>(_ => 
-    new TopLevelMenu(), args);
+host.UseInteractiveCli<TopLevelMenu>(_ => new TopLevelMenu(), args);
