@@ -1,3 +1,5 @@
+using App.Models;
+
 namespace App.Days;
 
 public class Day4
@@ -93,5 +95,3 @@ public class Day4
     private bool IsNotInBounds((int x, int y) coord)
         => coord.x < 0 || coord.y < 0 || coord.x >= _data.Length || coord.y >= _data[0].Length;
 }
-
-public record Coord(int X, int Y);
