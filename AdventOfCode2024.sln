@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 
+# Visual Studio Version
 VisualStudioVersion = 
 MinimumVisualStudioVersion = 
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2DF6459E-E8C2-476D-8B18-D591E5127482}"
@@ -20,6 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Files", "Files", "{E87E6FBD
 		Files\Day2.txt = Files\Day2.txt
 		Files\Day3.txt = Files\Day3.txt
 		Files\Day5.txt = Files\Day5.txt
+		Files\Day7.txt = Files\Day7.txt
 	EndProjectSection
 EndProject
 Global
